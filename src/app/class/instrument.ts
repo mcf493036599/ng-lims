@@ -1,3 +1,6 @@
+import {User} from "./user";
+import {Department} from "./department";
+import {Reservation} from "./reservation";
 export class Instrument {
   id: number;
   name: string;
@@ -5,6 +8,7 @@ export class Instrument {
   location: string;
   image: string;
   description: string;
-  department: number;
-  admin: number;
+  department?: Department;
+  admin?: User;
+  reservationSet?: Reservation[];
 }

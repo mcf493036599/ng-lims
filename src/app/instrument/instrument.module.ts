@@ -8,11 +8,13 @@ import {InstrumentListComponent} from './instrument-list/instrument-list.compone
 import {InstrumentCardComponent} from './instrument-card/instrument-card.component';
 import {UserInfoCardComponent} from './user-info-card/user-info-card.component';
 import {InstrumentDetailComponent} from './instrument-detail/instrument-detail.component';
+import { InstrumentTestComponent } from './instrument-test/instrument-test.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   imports: [
     CommonModule,
-    InstrumentRoutingModule
+    RouterModule
   ],
   declarations: [
     InstrumentComponent,
@@ -20,7 +22,8 @@ import {InstrumentDetailComponent} from './instrument-detail/instrument-detail.c
     InstrumentListComponent,
     InstrumentCardComponent,
     UserInfoCardComponent,
-    InstrumentDetailComponent
+    InstrumentDetailComponent,
+    InstrumentTestComponent
   ]
 })
 export class InstrumentModule {

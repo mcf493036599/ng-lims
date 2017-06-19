@@ -3,9 +3,9 @@
   <div class="panel-body">
     <ul class="nav nav-stacked">
       <li [class.selected]="'all' === currentDepartmentID">
-        <a (click)="select('all')" >
-        所有平台
-      </a>
+        <a (click)="select('all')">
+          所有平台
+        </a>
       </li>
       <li *ngFor="let department of departmentList" [class.selected]="department.id === currentDepartmentID">
         <a (click)="select(department.id)">
@@ -13,5 +13,11 @@
         </a>
       </li>
     </ul>
+    <div>
+      <!--<a [routerLink]="[{outlets:{instrumentOutlet: 'instrument-list'}}]">-->
+      <!--test-->
+      <!--</a>-->
+      <!--<a [routerLink]="[{outlets: {instrumentOutlet: 'dashboard'}}]">Open Dashboard</a>-->
+    </div>
   </div>
 </div>

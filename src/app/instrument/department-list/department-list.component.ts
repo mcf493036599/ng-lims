@@ -4,6 +4,7 @@ import {Department} from "../../class/department";
 import {ShareService} from "../../service/share.service";
 import {GqlService} from "../../service/gql.service";
 import gql from 'graphql-tag';
+import {ActivatedRoute, Router} from "@angular/router";
 @Component({
   selector: 'app-department-list',
   templateUrl: './department-list.component.html',
@@ -27,7 +28,8 @@ export class DepartmentListComponent implements OnInit {
    }`
 
   constructor(private gqlService: GqlService,
-              private sharedService: ShareService) {
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -45,7 +47,18 @@ export class DepartmentListComponent implements OnInit {
 
   select(departmentId: string) {
     this.currentDepartmentID = departmentId;
+    console.log('department list: ' + this.currentDepartmentID);
+    this.router.navigate([
+      '/instrument',
+      {
+        outlets: {
+          instrumentOutlet: 'instrument-list'
+        },
+        departmentId: this.currentDepartmentID
+      }
+    ])
     //this.sharedService.publishDepartmentID(departmentId);
+
   }
 
 }

@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {InstrumentComponent} from "./instrument/instrument.component";
 import {InstrumentListComponent} from "./instrument-list/instrument-list.component";
+import {InstrumentTestComponent} from "./instrument-test/instrument-test.component";
 
 const routes: Routes = [
   {
@@ -9,8 +10,18 @@ const routes: Routes = [
     component: InstrumentComponent,
     children: [
       {
-        path: "by-department/:id",
-        component: InstrumentListComponent
+        path: "instrument-list",
+        component: InstrumentListComponent,
+        outlet: "instrumentOutlet"
+      },
+      {
+        path: "test",
+        component: InstrumentTestComponent,
+        outlet: "instrumentOutlet"
+      },
+      {
+        path: "test2",
+        component: InstrumentTestComponent
       }
     ]
   }
