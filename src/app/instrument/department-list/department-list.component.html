@@ -2,8 +2,8 @@
   <div class="panel-heading"><h6>{{title}}</h6></div>
   <div class="panel-body">
     <ul class="nav nav-stacked">
-      <li [class.selected]="0 === currentDepartmentID">
-        <a (click)="select(0)" >
+      <li [class.selected]="'all' === currentDepartmentID">
+        <a (click)="select('all')" >
         所有平台
       </a>
       </li>

@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'instrument',
-    component: InstrumentComponent
+    loadChildren: 'app/instrument/instrument.module#InstrumentModule'
   },
   {
     path: '**',

@@ -5,4 +5,9 @@ export class User {
   username: string;
   email: string;
   phone: string;
+
+  getFullNameCN(): string{
+    return this.last_name + this.first_name;
+  }
+
 }

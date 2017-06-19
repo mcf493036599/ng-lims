@@ -11,6 +11,20 @@ import {ErrorModule} from "./error/error.module";
 import {InstrumentModule} from "./instrument/instrument.module";
 import {LimsRestService} from "./service/lims-rest.service";
 import {ShareService} from "./service/share.service";
+import {ApolloClient, createNetworkInterface} from 'apollo-client';
+import {ApolloModule} from 'apollo-angular';
+import {GqlService} from "./service/gql.service";
+
+
+//create apollo graphql client
+const client = new ApolloClient({
+  networkInterface: createNetworkInterface({
+    uri: "http://localhost:8000/graphql"
+  }),
+});
+export function provideClient(): ApolloClient {
+  return client;
+}
 
 @NgModule({
   declarations: [
@@ -20,6 +34,7 @@ import {ShareService} from "./service/share.service";
     BrowserModule,
     FormsModule,
     HttpModule,
+    ApolloModule.forRoot(provideClient),
     AppRoutingModule,
     HomeModule,
     AboutModule,
@@ -27,6 +42,7 @@ import {ShareService} from "./service/share.service";
     InstrumentModule
   ],
   providers: [
+    GqlService,
     LimsRestService,
     ShareService
   ],
