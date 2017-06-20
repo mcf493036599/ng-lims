@@ -43,6 +43,7 @@ query{
 })
 export class InstrumentListComponent implements OnInit {
   instrumentList: Instrument[];
+  departmentId: string;
   errorMsg: string;
 
   constructor(private gqlService: GqlService,
@@ -57,23 +58,18 @@ export class InstrumentListComponent implements OnInit {
 
   ngOnInit() {
     console.log('instrument list init...')
-    //this.getInstrumentListByDepartment(this.departmentID);
-    this.route.params.subscribe(
-      params => {
-        console.log(params)
-      }
+    this.shareService.selectedDepartmentID$.subscribe(
+      departmentId => this.getInstrumentListByDepartment(departmentId)
     )
-
   }
 
-  getInstrumentListByDepartment(departmentID: number) {
+  getInstrumentListByDepartment(departmentID: string) {
     //todo filter by department ID
     this.gqlService.queryGQL(gqlAllInstruments)
       .subscribe(({data}) => {
-        this.instrumentList = data['allInstrument'].edges
+        this.instrumentList = data['allInstruments'].edges
           .map(data => data.node)
+        console.log('get all instruments: ' + this.instrumentList)
       })
   }
-
-
 }

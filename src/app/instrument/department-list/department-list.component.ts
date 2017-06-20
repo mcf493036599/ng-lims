@@ -29,12 +29,14 @@ export class DepartmentListComponent implements OnInit {
 
   constructor(private gqlService: GqlService,
               private route: ActivatedRoute,
+              private shareService: ShareService,
               private router: Router) {
   }
 
   ngOnInit() {
     this.getDepartmentList();
-    this.currentDepartmentID = 'all'
+    this.currentDepartmentID = 'all';
+    this.select(this.currentDepartmentID);
   }
 
   getDepartmentList() {
@@ -53,11 +55,11 @@ export class DepartmentListComponent implements OnInit {
       {
         outlets: {
           instrumentOutlet: 'instrument-list'
-        },
-        departmentId: this.currentDepartmentID
+        }
+        //departmentId: this.currentDepartmentID
       }
     ])
-    //this.sharedService.publishDepartmentID(departmentId);
+    this.shareService.publishDepartmentID(departmentId);
 
   }
 

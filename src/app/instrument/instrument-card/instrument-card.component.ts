@@ -17,7 +17,7 @@ export class InstrumentCardComponent implements OnInit {
 
   viewDetail(){
     console.log(`view detail ${this.instrument.id}`)
-    this.shareService.publishDetailInstrumentID(this.instrument.id);
+    // this.shareService.publishDetailInstrumentID(this.instrument.id);
   }
 
 }

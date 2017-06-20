@@ -14,12 +14,12 @@ export class InstrumentDetailComponent implements OnInit {
 
   constructor(private restService: LimsRestService,
               private shareService: ShareService) {
-    this.shareService.detailInstrumentID$
-      .subscribe(
-        data => {
-          this.getInstrument(data)
-        }
-      )
+    // this.shareService.detailInstrumentID$
+    //   .subscribe(
+    //     data => {
+    //       this.getInstrument(data)
+    //     }
+    //   )
   }
 
   ngOnInit() {
