@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^4.2.3",
     "@angular/platform-browser-dynamic": "^4.2.3",
     "@angular/router": "^4.2.3",
+    "angular-calendar": "^0.17.3",
     "apollo-angular": "^0.13.0",
     "apollo-client": "^1.4.2",
     "bluebird": "^3.5.0",
@@ -31,6 +32,7 @@
     "num2fraction": "^1.2.2",
     "pretty-error": "^2.1.0",
     "rxjs": "^5.1.0",
+    "timekit-booking": "^1.16.0",
     "toposort": "^1.0.3",
     "zone.js": "^0.8.4"
   },

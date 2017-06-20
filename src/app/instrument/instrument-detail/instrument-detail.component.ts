@@ -5,6 +5,8 @@ import gql from 'graphql-tag';
 import {GqlService} from "../../service/gql.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import 'rxjs/add/operator/switchMap';
+import {Reservation} from "../../class/reservation";
+import set = Reflect.set;
 
 
 const gqlInstrumentDetail = gql`
@@ -56,6 +58,8 @@ export class InstrumentDetailComponent implements OnInit, AfterViewInit {
   instrument: Instrument;
   test: string;
   errorMsg: string;
+  //todo clean this code
+  reservationSet: Reservation[];
 
   constructor(private gqlService: GqlService,
               private route: ActivatedRoute,
@@ -85,7 +89,10 @@ export class InstrumentDetailComponent implements OnInit, AfterViewInit {
   getInstrument(id: string) {
     this.gqlService.queryGQL(gqlInstrumentDetail, {"id": id})
       .subscribe(({data}) => {
+        //todo clean this code
         this.instrument = data['instrument'];
+        this.reservationSet = this.instrument['reservationSet']['edges']
+          .map(el => el['node'])
         console.log(this.instrument.name)
       })
   }
