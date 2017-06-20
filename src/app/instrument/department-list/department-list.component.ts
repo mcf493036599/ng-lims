@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {LimsRestService} from "../../service/lims-rest.service";
 import {Department} from "../../class/department";
 import {ShareService} from "../../service/share.service";
@@ -10,11 +10,11 @@ import {ActivatedRoute, Router} from "@angular/router";
   templateUrl: './department-list.component.html',
   styleUrls: ['./department-list.component.css']
 })
-export class DepartmentListComponent implements OnInit {
+export class DepartmentListComponent implements OnInit, AfterViewInit {
   title = '仪器所属平台'
   errorMsg: string;
   departmentList: Department[];
-  public currentDepartmentID: string;
+  //public currentDepartmentID: string;
   gqlString = gql`
     query{
       allDepartments{
@@ -28,15 +28,18 @@ export class DepartmentListComponent implements OnInit {
    }`
 
   constructor(private gqlService: GqlService,
-              private route: ActivatedRoute,
               private shareService: ShareService,
               private router: Router) {
   }
 
   ngOnInit() {
+    console.log('department list init ...')
     this.getDepartmentList();
-    this.currentDepartmentID = 'all';
-    this.select(this.currentDepartmentID);
+    //this.currentDepartmentID = 'all';
+    //this.shareService.publishDepartmentID(this.currentDepartmentID);
+    this.select('all');
+  }
+  ngAfterViewInit() {
   }
 
   getDepartmentList() {
@@ -48,18 +51,20 @@ export class DepartmentListComponent implements OnInit {
   }
 
   select(departmentId: string) {
-    this.currentDepartmentID = departmentId;
-    console.log('department list: ' + this.currentDepartmentID);
-    this.router.navigate([
-      '/instrument',
-      {
-        outlets: {
-          instrumentOutlet: 'instrument-list'
-        }
-        //departmentId: this.currentDepartmentID
-      }
-    ])
+    //this.currentDepartmentID = departmentId;
+    console.log('selected department: ' + departmentId);
     this.shareService.publishDepartmentID(departmentId);
+    this.router.navigate(['/instrument/instrument-list'])
+    // this.router.navigate([
+    //   '/instrument',
+    //   {
+    //     outlets: {
+    //       instrumentOutlet: 'instrument-list'
+    //     }
+    //     //departmentId: this.currentDepartmentID
+    //   }
+    // ])
+
 
   }
 

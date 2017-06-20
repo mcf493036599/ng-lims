@@ -12,6 +12,7 @@ export class ShareService {
 
   constructor() { }
   publishDepartmentID (id: string) {
+    console.log(`published departmentID ${id}`);
     this.selectedDepartmentID.next(id);
   }
 

@@ -3,6 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {InstrumentComponent} from "./instrument/instrument.component";
 import {InstrumentListComponent} from "./instrument-list/instrument-list.component";
 import {InstrumentTestComponent} from "./instrument-test/instrument-test.component";
+import {InstrumentDetailComponent} from "./instrument-detail/instrument-detail.component";
 
 const routes: Routes = [
   {
@@ -12,6 +13,11 @@ const routes: Routes = [
       {
         path: "instrument-list",
         component: InstrumentListComponent,
+        outlet: "instrumentOutlet"
+      },
+      {
+        path: "instrument-detail",
+        component: InstrumentDetailComponent,
         outlet: "instrumentOutlet"
       },
       {

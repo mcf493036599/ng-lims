@@ -2,7 +2,7 @@ import {User} from "./user";
 import {Department} from "./department";
 import {Reservation} from "./reservation";
 export class Instrument {
-  id: number;
+  id: string;
   name: string;
   status: string;
   location: string;

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Instrument} from "../../class/instrument";
 import {ShareService} from "../../service/share.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-instrument-card',
@@ -10,14 +11,28 @@ import {ShareService} from "../../service/share.service";
 export class InstrumentCardComponent implements OnInit {
   @Input() instrument: Instrument;
 
-  constructor(private shareService: ShareService) { }
+  constructor(private shareService: ShareService,
+              private router: Router) {
+  }
 
   ngOnInit() {
   }
 
-  viewDetail(){
+  viewDetail() {
     console.log(`view detail ${this.instrument.id}`)
-    // this.shareService.publishDetailInstrumentID(this.instrument.id);
+    this.shareService.publishDetailInstrumentID(this.instrument.id);
+    this.router.navigate([
+      '/instrument/instrument-detail',
+      this.instrument.id
+      //this.instrument.id
+      // {
+      //   outlets: {
+      //     instrumentOutlet: 'instrument-detail'
+      //   }
+      //   //departmentId: this.currentDepartmentID
+      // }
+    ])
+
   }
 
 }

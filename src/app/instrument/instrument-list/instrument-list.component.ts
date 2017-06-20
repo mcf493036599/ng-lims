@@ -7,7 +7,36 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
 import gql from 'graphql-tag';
 import {GqlService} from "../../service/gql.service";
-
+const gqlInstrumentsByDepartment = gql`
+query($id: ID!){
+  department(id: $id) {
+    name
+    id
+    instrumentSet {
+      edges {
+        node {
+          id
+          name
+          status
+          location
+          image
+          description
+          department {
+            name
+          }
+          admin {
+            id
+            username
+            lastName
+            firstName
+            phone
+            email
+          }
+        }
+      }
+    }
+  }
+}`;
 const gqlAllInstruments = gql`
 query{
   allInstruments{
@@ -49,6 +78,7 @@ export class InstrumentListComponent implements OnInit {
   constructor(private gqlService: GqlService,
               private shareService: ShareService,
               private route: ActivatedRoute) {
+    console.log('instrument list constructed')
     // this.shareService.selectedDepartmentID$.subscribe(
     //   data => {
     //     this.getInstrumentListByDepartment(data);
@@ -59,17 +89,29 @@ export class InstrumentListComponent implements OnInit {
   ngOnInit() {
     console.log('instrument list init...')
     this.shareService.selectedDepartmentID$.subscribe(
-      departmentId => this.getInstrumentListByDepartment(departmentId)
+      departmentId => {
+        this.getInstrumentListByDepartment(departmentId);
+        console.log(`department id in instrument list ${departmentId}`);
+      }
     )
   }
 
   getInstrumentListByDepartment(departmentID: string) {
-    //todo filter by department ID
-    this.gqlService.queryGQL(gqlAllInstruments)
-      .subscribe(({data}) => {
-        this.instrumentList = data['allInstruments'].edges
-          .map(data => data.node)
-        console.log('get all instruments: ' + this.instrumentList)
-      })
+    console.log(`get instrument list (department id ${departmentID})`)
+    // all instruments
+    if (departmentID === 'all') {
+      this.gqlService.queryGQL(gqlAllInstruments)
+        .subscribe(({data}) => {
+          this.instrumentList = data['allInstruments'].edges
+            .map(data => data.node)
+        })
+    }
+    else {
+      this.gqlService.queryGQL(gqlInstrumentsByDepartment, {"id": departmentID})
+        .subscribe(({data}) => {
+          this.instrumentList = data['department']['instrumentSet']['edges']
+            .map(data => data.node)
+        })
+    }
   }
 }

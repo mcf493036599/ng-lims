@@ -1,13 +1,13 @@
 export class User {
   id: number;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   username: string;
   email: string;
   phone: string;
 
   getFullNameCN(): string{
-    return this.last_name + this.first_name;
+    return this.lastName + this.firstName;
   }
 
 }

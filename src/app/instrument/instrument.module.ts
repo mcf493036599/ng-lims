@@ -6,7 +6,6 @@ import {InstrumentComponent} from './instrument/instrument.component';
 import {DepartmentListComponent} from './department-list/department-list.component';
 import {InstrumentListComponent} from './instrument-list/instrument-list.component';
 import {InstrumentCardComponent} from './instrument-card/instrument-card.component';
-import {UserInfoCardComponent} from './user-info-card/user-info-card.component';
 import {InstrumentDetailComponent} from './instrument-detail/instrument-detail.component';
 import { InstrumentTestComponent } from './instrument-test/instrument-test.component';
 import {RouterModule} from "@angular/router";
@@ -21,7 +20,6 @@ import {RouterModule} from "@angular/router";
     DepartmentListComponent,
     InstrumentListComponent,
     InstrumentCardComponent,
-    UserInfoCardComponent,
     InstrumentDetailComponent,
     InstrumentTestComponent
   ]
