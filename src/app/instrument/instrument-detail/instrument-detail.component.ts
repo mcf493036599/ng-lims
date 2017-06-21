@@ -7,6 +7,7 @@ import {ActivatedRoute, Params} from "@angular/router";
 import 'rxjs/add/operator/switchMap';
 import {Reservation} from "../../class/reservation";
 import set = Reflect.set;
+import {ScheduleReservation} from "../../class/schedule-reservation";
 
 
 const gqlInstrumentDetail = gql`
@@ -56,10 +57,10 @@ query($id: ID!){
 })
 export class InstrumentDetailComponent implements OnInit, AfterViewInit {
   instrument: Instrument;
-  test: string;
+  scheduleConfig: any;
   errorMsg: string;
   //todo clean this code
-  reservationSet: Reservation[];
+  reservationSet: ScheduleReservation[];
 
   constructor(private gqlService: GqlService,
               private route: ActivatedRoute,
@@ -68,10 +69,16 @@ export class InstrumentDetailComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     console.log('instrument detail init .....');
-    this.test = 'testtest';
+
+    this.scheduleConfig = {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'month,agendaWeek,agendaDay'
+    };
+
     this.route.params
     // (+) converts string 'id' to a number
-      //.switchMap((params: Params) => this.getInstrument(params['id']))
+    //.switchMap((params: Params) => this.getInstrument(params['id']))
       .subscribe((params: Params) => this.getInstrument(params['id']));
     // this.shareService.detailInstrumentID$.subscribe(
     //   id => {
@@ -92,7 +99,13 @@ export class InstrumentDetailComponent implements OnInit, AfterViewInit {
         //todo clean this code
         this.instrument = data['instrument'];
         this.reservationSet = this.instrument['reservationSet']['edges']
-          .map(el => el['node'])
+          .map(el => {
+            let event = {};
+            event['title'] = el['node'].user.lastName + el['node'].user.firstName;
+            event['start'] = el['node'].startTime;
+            event['end'] = el['node'].endTime;
+            return event;
+          })
         console.log(this.instrument.name)
       })
   }

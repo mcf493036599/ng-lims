@@ -43,9 +43,17 @@
       </div>
     </div>
     <div class="row">
-    <ul>
-      <li *ngFor="let reservation of reservationSet">{{reservation.user.firstName}} {{reservation.startTime}}</li>
-    </ul>
+      <p-schedule
+        [events]="reservationSet"
+        [header]="scheduleConfig"
+        editable="true"
+        locale="zh-cn"
+        [defaultView]="'agendaWeek'"
+      ></p-schedule>
+
+      <!--<ul>-->
+      <!--<li *ngFor="let reservation of reservationSet">{{reservation.user.firstName}} {{reservation.startTime}}</li>-->
+      <!--</ul>-->
     </div>
   </div>
 </div>

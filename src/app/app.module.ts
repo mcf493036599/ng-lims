@@ -15,7 +15,7 @@ import {ApolloClient, createNetworkInterface} from 'apollo-client';
 import {ApolloModule} from 'apollo-angular';
 import {GqlService} from "./service/gql.service";
 import { CalendarDemoComponent } from './calendar-demo/calendar-demo.component';
-import {CalendarComponent, CalendarModule} from "ap-angular2-fullcalendar";
+import {ScheduleModule} from 'primeng/primeng';
 
 
 //create apollo graphql client
@@ -44,7 +44,7 @@ export function provideClient(): ApolloClient {
     AboutModule,
     ErrorModule,
     InstrumentModule,
-    CalendarModule.forRoot()
+    ScheduleModule
 
   ],
   providers: [

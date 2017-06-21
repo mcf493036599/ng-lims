@@ -12,6 +12,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^4.2.3",
     "@angular/common": "^4.2.3",
     "@angular/compiler": "^4.2.3",
     "@angular/core": "^4.2.3",
@@ -35,10 +36,12 @@
     "ngx-bootstrap": "^1.7.1",
     "num2fraction": "^1.2.2",
     "pretty-error": "^2.1.0",
+    "primeng": "^4.1.0-rc.2",
     "rxjs": "^5.1.0",
     "timekit-booking": "^1.16.0",
     "toposort": "^1.0.3",
-    "zone.js": "^0.8.4"
+    "zone.js": "^0.8.4",
+    "font-awesome": "^4.7.0"
   },
   "devDependencies": {
     "@angular/cli": "1.1.2",

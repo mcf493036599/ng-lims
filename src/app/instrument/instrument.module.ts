@@ -7,13 +7,15 @@ import {DepartmentListComponent} from './department-list/department-list.compone
 import {InstrumentListComponent} from './instrument-list/instrument-list.component';
 import {InstrumentCardComponent} from './instrument-card/instrument-card.component';
 import {InstrumentDetailComponent} from './instrument-detail/instrument-detail.component';
-import { InstrumentTestComponent } from './instrument-test/instrument-test.component';
+import {InstrumentTestComponent} from './instrument-test/instrument-test.component';
 import {RouterModule} from "@angular/router";
+import {ScheduleModule} from "primeng/primeng";
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ScheduleModule
   ],
   declarations: [
     InstrumentComponent,
