@@ -1,3 +1,5 @@
+@import "../node_modules/fullcalendar/dist/fullcalendar.min.css";
+
 html, body {
     /* Margin bottom by footer height */
 

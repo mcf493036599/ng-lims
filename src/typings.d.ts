@@ -4,4 +4,4 @@ interface NodeModule {
   id: string;
 }
 
-declare var TimekitBooking: any;
+declare var fullCalendar: any;

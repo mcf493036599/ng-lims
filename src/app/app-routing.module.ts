@@ -6,6 +6,7 @@ import {InstrumentComponent} from "./instrument/instrument/instrument.component"
 import {InstrumentTestComponent} from "./instrument/instrument-test/instrument-test.component";
 import {InstrumentListComponent} from "./instrument/instrument-list/instrument-list.component";
 import {InstrumentDetailComponent} from "./instrument/instrument-detail/instrument-detail.component";
+import {CalendarDemoComponent} from "./calendar-demo/calendar-demo.component";
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
         // outlet: "instrumentOutlet"
       }
     ]
+  },
+  {
+    path: 'calendar-test',
+    component: CalendarDemoComponent
   },
   {
     path: '**',

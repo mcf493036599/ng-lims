@@ -14,6 +14,8 @@ import {ShareService} from "./service/share.service";
 import {ApolloClient, createNetworkInterface} from 'apollo-client';
 import {ApolloModule} from 'apollo-angular';
 import {GqlService} from "./service/gql.service";
+import { CalendarDemoComponent } from './calendar-demo/calendar-demo.component';
+import {CalendarComponent, CalendarModule} from "ap-angular2-fullcalendar";
 
 
 //create apollo graphql client
@@ -28,7 +30,9 @@ export function provideClient(): ApolloClient {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CalendarDemoComponent
+
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,9 @@ export function provideClient(): ApolloClient {
     HomeModule,
     AboutModule,
     ErrorModule,
-    InstrumentModule
+    InstrumentModule,
+    CalendarModule.forRoot()
+
   ],
   providers: [
     GqlService,
