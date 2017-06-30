@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import {Department} from "../class/department";
+import {Department} from "../models/department";
 
 interface QueryResponseInterface{
   loading: boolean;

@@ -1,12 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Instrument} from "../../class/instrument";
+import {Instrument} from "../../models/instrument";
 import {LimsRestService} from "../../service/lims-rest.service";
 import {ShareService} from "../../service/share.service";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, ActivatedRouteSnapshot, ParamMap, Params} from "@angular/router";
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
 import gql from 'graphql-tag';
 import {GqlService} from "../../service/gql.service";
+import {Observable} from "rxjs/Observable";
 const gqlInstrumentsByDepartment = gql`
 query($id: ID!){
   department(id: $id) {
@@ -71,7 +72,7 @@ query{
   styleUrls: ['./instrument-list.component.css']
 })
 export class InstrumentListComponent implements OnInit {
-  instrumentList: Instrument[];
+  instrumentList: Observable<Instrument[]>;
   departmentId: string;
   errorMsg: string;
 
@@ -88,12 +89,18 @@ export class InstrumentListComponent implements OnInit {
 
   ngOnInit() {
     console.log('instrument list init...')
-    this.shareService.selectedDepartmentID$.subscribe(
-      departmentId => {
-        this.getInstrumentListByDepartment(departmentId);
-        console.log(`department id in instrument list ${departmentId}`);
-      }
-    )
+    this.route.paramMap
+      .switchMap((params: ParamMap) => {
+      this.departmentId = params.get('departmentId');
+      return params.get('departmentId')
+      })
+    // this.shareService.selectedDepartmentID$.subscribe(
+    //   departmentId => {
+    //     this.getInstrumentListByDepartment(departmentId);
+    //     console.log(`department id in instrument list ${departmentId}`);
+    //   }
+    // )
+
   }
 
   getInstrumentListByDepartment(departmentID: string) {

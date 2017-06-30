@@ -9,7 +9,6 @@ import {HomeModule} from "./home/home.module";
 import {AboutModule} from "./about/about.module";
 import {ErrorModule} from "./error/error.module";
 import {InstrumentModule} from "./instrument/instrument.module";
-import {LimsRestService} from "./service/lims-rest.service";
 import {ShareService} from "./service/share.service";
 import {ApolloClient, createNetworkInterface} from 'apollo-client';
 import {ApolloModule} from 'apollo-angular';
@@ -39,17 +38,17 @@ export function provideClient(): ApolloClient {
     FormsModule,
     HttpModule,
     ApolloModule.forRoot(provideClient),
-    AppRoutingModule,
     HomeModule,
     AboutModule,
     ErrorModule,
     InstrumentModule,
-    ScheduleModule
+    ScheduleModule,
+    AppRoutingModule
 
   ],
   providers: [
     GqlService,
-    LimsRestService,
+    //LimsRestService,
     ShareService
   ],
   bootstrap: [AppComponent]

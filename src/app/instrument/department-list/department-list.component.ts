@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {LimsRestService} from "../../service/lims-rest.service";
-import {Department} from "../../class/department";
+import {Department} from "../../models/department";
 import {ShareService} from "../../service/share.service";
 import {GqlService} from "../../service/gql.service";
 import gql from 'graphql-tag';
@@ -54,7 +54,7 @@ export class DepartmentListComponent implements OnInit, AfterViewInit {
     //this.currentDepartmentID = departmentId;
     console.log('selected department: ' + departmentId);
     this.shareService.publishDepartmentID(departmentId);
-    this.router.navigate(['/instrument/instrument-list'])
+    this.router.navigate(['/instrument/instrument-list', {'departmentId': departmentId}])
     // this.router.navigate([
     //   '/instrument',
     //   {

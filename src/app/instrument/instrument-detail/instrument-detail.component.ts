@@ -1,13 +1,13 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ShareService} from "../../service/share.service";
-import {Instrument} from "../../class/instrument";
+import {Instrument} from "../../models/instrument";
 import gql from 'graphql-tag';
 import {GqlService} from "../../service/gql.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import 'rxjs/add/operator/switchMap';
-import {Reservation} from "../../class/reservation";
+import {Reservation} from "../../models/reservation";
 import set = Reflect.set;
-import {ScheduleReservation} from "../../class/schedule-reservation";
+import {ScheduleReservation} from "../../models/schedule-reservation";
 
 
 const gqlInstrumentDetail = gql`

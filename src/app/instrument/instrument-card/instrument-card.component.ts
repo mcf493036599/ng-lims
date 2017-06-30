@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Instrument} from "../../class/instrument";
+import {Instrument} from "../../models/instrument";
 import {ShareService} from "../../service/share.service";
 import {ActivatedRoute, Router} from "@angular/router";
 

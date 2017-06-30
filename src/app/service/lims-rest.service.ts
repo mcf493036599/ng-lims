@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Department} from '../class/department';
-import {User} from '../class/user';
-import {Instrument} from '../class/instrument';
-import {Reservation} from '../class/reservation';
+import {Department} from '../models/department';
+import {User} from '../models/user';
+import {Instrument} from '../models/instrument';
+import {Reservation} from '../models/reservation';
 import {Observable} from "rxjs/Observable";
 import {Http, Response, Headers, ResponseOptions} from "@angular/http";
 import 'rxjs/add/operator/map';
