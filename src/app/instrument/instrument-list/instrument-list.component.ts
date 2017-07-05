@@ -8,6 +8,8 @@ import 'rxjs/add/operator/do';
 import gql from 'graphql-tag';
 import {GqlService} from "../../service/gql.service";
 import {Observable} from "rxjs/Observable";
+import {Department} from "../../models/department";
+import {isUndefined} from "util";
 const gqlInstrumentsByDepartment = gql`
 query($id: ID!){
   department(id: $id) {
@@ -89,11 +91,12 @@ export class InstrumentListComponent implements OnInit {
 
   ngOnInit() {
     console.log('instrument list init...')
-    this.route.paramMap
-      .switchMap((params: ParamMap) => {
-      this.departmentId = params.get('departmentId');
-      return params.get('departmentId')
-      })
+    this.route.params
+      .subscribe(
+        (params: Params) => {
+          this.getInstrumentListByDepartment(params['departmentId'])
+        }
+      )
     // this.shareService.selectedDepartmentID$.subscribe(
     //   departmentId => {
     //     this.getInstrumentListByDepartment(departmentId);
@@ -106,6 +109,10 @@ export class InstrumentListComponent implements OnInit {
   getInstrumentListByDepartment(departmentID: string) {
     console.log(`get instrument list (department id ${departmentID})`)
     // all instruments
+    if (isUndefined(departmentID)){
+      departmentID = 'all';
+    }
+
     if (departmentID === 'all') {
       this.gqlService.queryGQL(gqlAllInstruments)
         .subscribe(({data}) => {

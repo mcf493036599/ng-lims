@@ -35,9 +35,6 @@ export class DepartmentListComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     console.log('department list init ...')
     this.getDepartmentList();
-    //this.currentDepartmentID = 'all';
-    //this.shareService.publishDepartmentID(this.currentDepartmentID);
-    this.select('all');
   }
   ngAfterViewInit() {
   }
@@ -50,22 +47,22 @@ export class DepartmentListComponent implements OnInit, AfterViewInit {
     )
   }
 
-  select(departmentId: string) {
-    //this.currentDepartmentID = departmentId;
-    console.log('selected department: ' + departmentId);
-    this.shareService.publishDepartmentID(departmentId);
-    this.router.navigate(['/instrument/instrument-list', {'departmentId': departmentId}])
-    // this.router.navigate([
-    //   '/instrument',
-    //   {
-    //     outlets: {
-    //       instrumentOutlet: 'instrument-list'
-    //     }
-    //     //departmentId: this.currentDepartmentID
-    //   }
-    // ])
-
-
-  }
+  // select(departmentId: string) {
+  //   //this.currentDepartmentID = departmentId;
+  //   console.log('selected department: ' + departmentId);
+  //   this.shareService.publishDepartmentID(departmentId);
+  //   this.router.navigate(['/instrument/instrument-list', {'departmentId': departmentId}])
+  //   // this.router.navigate([
+  //   //   '/instrument',
+  //   //   {
+  //   //     outlets: {
+  //   //       instrumentOutlet: 'instrument-list'
+  //   //     }
+  //   //     //departmentId: this.currentDepartmentID
+  //   //   }
+  //   // ])
+  //
+  //
+  // }
 
 }

@@ -8,13 +8,13 @@ import {AppRoutingModule} from "./app-routing.module";
 import {HomeModule} from "./home/home.module";
 import {AboutModule} from "./about/about.module";
 import {ErrorModule} from "./error/error.module";
-import {InstrumentModule} from "./instrument/instrument.module";
 import {ShareService} from "./service/share.service";
 import {ApolloClient, createNetworkInterface} from 'apollo-client';
 import {ApolloModule} from 'apollo-angular';
 import {GqlService} from "./service/gql.service";
 import { CalendarDemoComponent } from './calendar-demo/calendar-demo.component';
 import {ScheduleModule} from 'primeng/primeng';
+import {UserModule} from "./user/user.module";
 
 
 //create apollo graphql client
@@ -31,7 +31,6 @@ export function provideClient(): ApolloClient {
   declarations: [
     AppComponent,
     CalendarDemoComponent
-
   ],
   imports: [
     BrowserModule,
@@ -41,8 +40,9 @@ export function provideClient(): ApolloClient {
     HomeModule,
     AboutModule,
     ErrorModule,
-    InstrumentModule,
+    // InstrumentModule,
     ScheduleModule,
+    UserModule,
     AppRoutingModule
 
   ],

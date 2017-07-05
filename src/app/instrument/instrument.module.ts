@@ -15,7 +15,8 @@ import {ScheduleModule} from "primeng/primeng";
   imports: [
     CommonModule,
     RouterModule,
-    ScheduleModule
+    ScheduleModule,
+    InstrumentRoutingModule
   ],
   declarations: [
     InstrumentComponent,

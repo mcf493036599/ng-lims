@@ -11,23 +11,18 @@ const routes: Routes = [
     component: InstrumentComponent,
     children: [
       {
-        path: "instrument-list",
+        path: "",
         component: InstrumentListComponent,
-        outlet: "instrumentOutlet"
       },
       {
-        path: "instrument-detail",
-        component: InstrumentDetailComponent,
-        outlet: "instrumentOutlet"
+        path: "instrument-list/:departmentId",
+        component: InstrumentListComponent
+        //outlet: "instrumentOutlet"
       },
       {
-        path: "test",
-        component: InstrumentTestComponent,
-        outlet: "instrumentOutlet"
-      },
-      {
-        path: "test2",
-        component: InstrumentTestComponent
+        path: "instrument-detail/:id",
+        component: InstrumentDetailComponent
+        // outlet: "instrumentOutlet"
       }
     ]
   }
