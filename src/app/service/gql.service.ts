@@ -22,7 +22,5 @@ export class GqlService {
 
   }
 
-  extractEdges(res: Response) {
-  }
 
 }
