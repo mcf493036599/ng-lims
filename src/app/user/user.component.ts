@@ -7,7 +7,6 @@ import {User} from "../models/user";
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  logged = false;
   currentUser: User;
 
   constructor() { }

@@ -1,3 +1,8 @@
-<p *ngIf="currentUser; else signInUpBlock"> welcome</p>
-<ng-template #signInUpBlock><a routerLink="sign-in">登录</a> </ng-template>
+<ul class="nav navbar-nav navbar-right">
+<li *ngIf="currentUser; else signInUpBlock"> welcome & logout</li>
+<ng-template #signInUpBlock>
+  <li><a routerLink="sign-in">登录</a></li>
+  <li><a routerLink="sign-up">注册</a></li>
+</ng-template>
+</ul>
 

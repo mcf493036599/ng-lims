@@ -12,9 +12,9 @@ import {ShareService} from "./service/share.service";
 import {ApolloClient, createNetworkInterface} from 'apollo-client';
 import {ApolloModule} from 'apollo-angular';
 import {GqlService} from "./service/gql.service";
-import { CalendarDemoComponent } from './calendar-demo/calendar-demo.component';
 import {ScheduleModule} from 'primeng/primeng';
 import {UserModule} from "./user/user.module";
+import {ShareModule} from "./share/share.module";
 
 
 //create apollo graphql client
@@ -29,8 +29,7 @@ export function provideClient(): ApolloClient {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CalendarDemoComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +42,7 @@ export function provideClient(): ApolloClient {
     // InstrumentModule,
     ScheduleModule,
     UserModule,
+    ShareModule,
     AppRoutingModule
 
   ],
