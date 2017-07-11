@@ -7,7 +7,6 @@ import {DepartmentListComponent} from './department-list/department-list.compone
 import {InstrumentListComponent} from './instrument-list/instrument-list.component';
 import {InstrumentCardComponent} from './instrument-card/instrument-card.component';
 import {InstrumentDetailComponent} from './instrument-detail/instrument-detail.component';
-import {InstrumentTestComponent} from './instrument-test/instrument-test.component';
 import {RouterModule} from "@angular/router";
 import {ScheduleModule} from "primeng/primeng";
 
@@ -23,8 +22,7 @@ import {ScheduleModule} from "primeng/primeng";
     DepartmentListComponent,
     InstrumentListComponent,
     InstrumentCardComponent,
-    InstrumentDetailComponent,
-    InstrumentTestComponent
+    InstrumentDetailComponent
   ]
 })
 export class InstrumentModule {

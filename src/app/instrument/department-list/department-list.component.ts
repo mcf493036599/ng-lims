@@ -14,22 +14,9 @@ export class DepartmentListComponent implements OnInit, AfterViewInit {
   title = '仪器所属平台'
   errorMsg: string;
   departmentList: Department[];
-  //public currentDepartmentID: string;
-  gqlString = gql`
-    query{
-      allDepartments{
-        edges{
-          node{
-            id
-            name
-          }
-        }
-      }
-   }`
 
-  constructor(private gqlService: GqlService,
-              private shareService: ShareService,
-              private router: Router) {
+
+  constructor(private restService: LimsRestService) {
   }
 
   ngOnInit() {
@@ -40,29 +27,10 @@ export class DepartmentListComponent implements OnInit, AfterViewInit {
   }
 
   getDepartmentList() {
-    this.gqlService.queryGQL(this.gqlString).subscribe(
-      ({data}) => {
-        this.departmentList = data['allDepartments'].edges.map(data => data.node)
-      }
-    )
+    this.restService.getDepartmentList()
+      .subscribe(
+        departmentList => this.departmentList = departmentList,
+        error => this.errorMsg = <any> error
+      )
   }
-
-  // select(departmentId: string) {
-  //   //this.currentDepartmentID = departmentId;
-  //   console.log('selected department: ' + departmentId);
-  //   this.shareService.publishDepartmentID(departmentId);
-  //   this.router.navigate(['/instrument/instrument-list', {'departmentId': departmentId}])
-  //   // this.router.navigate([
-  //   //   '/instrument',
-  //   //   {
-  //   //     outlets: {
-  //   //       instrumentOutlet: 'instrument-list'
-  //   //     }
-  //   //     //departmentId: this.currentDepartmentID
-  //   //   }
-  //   // ])
-  //
-  //
-  // }
-
 }

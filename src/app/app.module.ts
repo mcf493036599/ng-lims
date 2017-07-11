@@ -15,6 +15,7 @@ import {GqlService} from "./service/gql.service";
 import {ScheduleModule} from 'primeng/primeng';
 import {UserModule} from "./user/user.module";
 import {ShareModule} from "./share/share.module";
+import {LimsRestService} from "./service/lims-rest.service";
 
 
 //create apollo graphql client
@@ -47,8 +48,7 @@ export function provideClient(): ApolloClient {
 
   ],
   providers: [
-    GqlService,
-    //LimsRestService,
+    LimsRestService,
     ShareService
   ],
   bootstrap: [AppComponent]

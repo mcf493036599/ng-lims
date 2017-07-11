@@ -10,63 +10,6 @@ import {GqlService} from "../../service/gql.service";
 import {Observable} from "rxjs/Observable";
 import {Department} from "../../models/department";
 import {isUndefined} from "util";
-const gqlInstrumentsByDepartment = gql`
-query($id: ID!){
-  department(id: $id) {
-    name
-    id
-    instrumentSet {
-      edges {
-        node {
-          id
-          name
-          status
-          location
-          image
-          description
-          department {
-            name
-          }
-          admin {
-            id
-            username
-            lastName
-            firstName
-            phone
-            email
-          }
-        }
-      }
-    }
-  }
-}`;
-const gqlAllInstruments = gql`
-query{
-  allInstruments{
-    edges{
-      node{
-        id
-        name
-        status
-        location
-        image
-        description
-        department{
-          name
-        }
-        admin{
-          id
-          username
-          lastName
-          firstName
-          phone
-          email
-        }
-      }
-    }
-  }
-}
-`
 
 @Component({
   selector: 'app-instrument-list',
@@ -74,12 +17,11 @@ query{
   styleUrls: ['./instrument-list.component.css']
 })
 export class InstrumentListComponent implements OnInit {
-  instrumentList: Observable<Instrument[]>;
-  departmentId: string;
+  instrumentList: Instrument[];
+  departmentId: number;
   errorMsg: string;
 
-  constructor(private gqlService: GqlService,
-              private shareService: ShareService,
+  constructor(private restService: LimsRestService,
               private route: ActivatedRoute) {
     console.log('instrument list constructed')
     // this.shareService.selectedDepartmentID$.subscribe(
@@ -94,38 +36,31 @@ export class InstrumentListComponent implements OnInit {
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.getInstrumentListByDepartment(params['departmentId'])
+          this.getInstrumentListByDepartment(+params['department'])
         }
       )
-    // this.shareService.selectedDepartmentID$.subscribe(
-    //   departmentId => {
-    //     this.getInstrumentListByDepartment(departmentId);
-    //     console.log(`department id in instrument list ${departmentId}`);
-    //   }
-    // )
-
   }
 
-  getInstrumentListByDepartment(departmentID: string) {
-    console.log(`get instrument list (department id ${departmentID})`)
+  getInstrumentListByDepartment(departmentId: number) {
+    console.log(`get instrument list (department id ${departmentId})`)
     // all instruments
-    if (isUndefined(departmentID)){
-      departmentID = 'all';
+    if (isNaN(departmentId)){
+      departmentId = 0;
     }
 
-    if (departmentID === 'all') {
-      this.gqlService.queryGQL(gqlAllInstruments)
-        .subscribe(({data}) => {
-          this.instrumentList = data['allInstruments'].edges
-            .map(data => data.node)
-        })
+    if (departmentId === 0) {
+      this.restService.getInstrumentList()
+        .subscribe(
+          instrumentList => this.instrumentList = instrumentList,
+          error => this.errorMsg = <any> error
+        )
     }
     else {
-      this.gqlService.queryGQL(gqlInstrumentsByDepartment, {"id": departmentID})
-        .subscribe(({data}) => {
-          this.instrumentList = data['department']['instrumentSet']['edges']
-            .map(data => data.node)
-        })
+      this.restService.getInstrumentListByDepartment(departmentId)
+        .subscribe(
+          instrumentList => this.instrumentList = instrumentList,
+          error => this.errorMsg = <any> error
+        )
     }
   }
 }
