@@ -1,8 +1,9 @@
 import {Instrument} from "./instrument";
 import {User} from "./user";
 export class Reservation {
-  instrument?: Instrument;
+  id: number;
+  instrument?: Instrument | number;
   user?: User;
-  startTime: string;
-  endTime: string;
+  start_time: string;
+  end_time: string;
 }

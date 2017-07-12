@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {AuthenticationService} from "../../service/authentication.service";
 
 @Component({
   selector: 'app-sign-in',
@@ -8,7 +9,11 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 })
 export class SignInComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private authenticationService: AuthenticationService
+  ) { }
+
   username = new FormControl('');
   password = new FormControl('');
 
@@ -20,7 +25,13 @@ export class SignInComponent implements OnInit {
   }
 
   signIn(){
-    console.log(`${this.username.value} signed in.`)
+
+    this.authenticationService.login(this.username.value, this.password.value)
+      .subscribe(
+        // todo add return url, or user page
+        data => console.log(`${this.username.value} signed in.`)
+        // todo add error handler
+      )
   }
 
 }

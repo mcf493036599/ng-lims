@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-sm-5">
         <div *ngIf="instrument">
-          <img src="http://localhost:8000/media/{{instrument.image}}" class="thumbnail instrument_image">
+          <img src="{{instrument.image}}" class="thumbnail instrument_image">
         </div>
       </div>
       <div class="col-sm-6 well">
@@ -17,7 +17,7 @@
           </tr>
           <tr>
             <th>设备型号:</th>
-            <td>待更新...</td>
+            <td>{{instrument?.manufacturer?.chinese_name || instrument?.manufacturer?.english_name}} ({{instrument?.model}})</td>
           </tr>
           <tr>
             <th>设备状态:</th>
@@ -25,7 +25,7 @@
           </tr>
           <tr>
             <th>管理员:</th>
-            <td>{{instrument?.admin.lastName + instrument?.admin.firstName}}</td>
+            <td>{{instrument?.admin.last_name + instrument?.admin.first_name}}</td>
           </tr>
           <tr>
             <th>电话:</th>
@@ -36,13 +36,26 @@
             <td>{{instrument?.admin.email}}</td>
           </tr>
           <tr>
-            <th>功能描述:</th>
-            <td>{{instrument?.description}}</td>
+            <th>预约时间</th>
+            <td>{{instrument?.reservation_start_time}} - {{instrument?.reservation_end_time}}</td>
           </tr>
+          <tr *ngIf="instrument?.description">
+            <th>功能描述:</th>
+            <td>{{instrument.description}}</td>
+          </tr>
+          <tr *ngIf="instrument?.application">
+            <th>使用范围:</th>
+            <td>{{instrument.application}}</td>
+          </tr>
+          <tr *ngIf="instrument?.accessories">
+            <th>配件明细:</th>
+            <td>{{instrument.accessories}}</td>
+          </tr>
+
         </table>
       </div>
     </div>
-    <div class="row">
+    <div class="row schedule">
       <p-schedule
         [events]="reservationSet"
         [header]="scheduleConfig"

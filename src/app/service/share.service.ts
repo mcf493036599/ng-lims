@@ -7,7 +7,7 @@ export class ShareService {
   private selectedDepartmentID = new Subject<string>();
   selectedDepartmentID$ = this.selectedDepartmentID.asObservable();
   //used for view detail info of a instrument
-  private detailInstrumentID = new Subject<string>();
+  private detailInstrumentID = new Subject<number>();
   detailInstrumentID$ = this.detailInstrumentID.asObservable();
 
   constructor() { }
@@ -16,7 +16,7 @@ export class ShareService {
     this.selectedDepartmentID.next(id);
   }
 
-  publishDetailInstrumentID(id: string) {
+  publishDetailInstrumentID(id: number) {
     this.detailInstrumentID.next(id);
   }
 }

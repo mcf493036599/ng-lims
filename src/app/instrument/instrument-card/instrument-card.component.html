@@ -9,9 +9,9 @@
           <button class="btn btn-primary" (click)="viewDetail()">预约</button>
         </div>
       </div>
-      <div class="col-sm-7">
+      <div class="col-lg-8">
         <!--<app-user-info-card [userID]="instrument.admin"></app-user-info-card>-->
-        <p>管理员：{{instrument?.admin.lastName + instrument?.admin.firstName}}</p>
+        <p>管理员：{{instrument?.admin.last_name + instrument?.admin.first_name}}</p>
         <p>电话：{{instrument?.admin.phone}}</p>
         <p>位置：{{instrument?.location}}</p>
       </div>

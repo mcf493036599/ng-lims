@@ -6,9 +6,10 @@
 html, body {
     /* Margin bottom by footer height */
 
-    /*margin-bottom: 60px;*/
+    margin-bottom: 65px;
     height: 100%;
 }
+
 .tjab-home{
     /*margin: 0 auto;*/
     width: 95%;
