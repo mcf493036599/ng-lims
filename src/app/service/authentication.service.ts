@@ -9,10 +9,10 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    return this.http.post('http://localhost:8000/api/api-auth/login', {username: username, password: password})
+    return this.http.post('http://localhost:8000/auth/login/', {username: username, password: password})
       .map((res: Response) => {
         let user = res.json();
-        if (user && user.token) {
+        if (user && user.auth_token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
         }
         return user;

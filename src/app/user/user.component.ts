@@ -9,9 +9,11 @@ import {User} from "../models/user";
 export class UserComponent implements OnInit {
   currentUser: User;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
 }
